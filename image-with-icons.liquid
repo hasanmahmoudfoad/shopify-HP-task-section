@@ -1,0 +1,407 @@
+{% style %}
+    /* START CUSTOM STYELS  */
+    /* START CUSTOM STYELS  */
+    
+    /* START Custom Fonts <poppins> */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+    /* END Custom Fonts <poppins> */
+    
+    
+      
+    .{{ section.id }}-pos-relative{
+      position:relative;
+    }
+    
+    .{{ section.id }}-container-main{
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1220px;
+        margin: auto;
+    }
+    
+    .{{ section.id }}-container-blocks{
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1220px;
+        margin: auto;
+    }
+      
+    .{{ section.id }}-flex-responsive {
+      flex: 0 0 auto;
+      width: 50%;
+      padding:2rem 2rem 0 0;
+    
+    }
+      
+    .{{ section.id }}-d-block{
+      display:block;
+    }
+      
+    .{{ section.id }}-image-wrap{
+      width :45%;
+      flex: 0 0 auto;
+      padding: 2rem 0;
+    }
+      
+    .{{ section.id }}-info-wrap{
+      width :55%;
+      flex: 0 0 auto;
+      padding: 2rem 6rem;
+    }
+    
+    .{{ section.id }}-icon{
+      width: 100%;
+      height: auto;
+    }
+    
+    {% for block in section.blocks %}
+      .{{ block.id }}-block {
+        width:50%
+      }
+      .{{ block.id }}-img-cont {
+        max-width: 60px;
+        min-height: 67px;
+      } 
+      @media (max-width: 1130px) {
+        .{{ block.id }}-img-cont {
+          max-width: 50px;
+          min-height: 55px;
+        } 
+      }
+    {% endfor %}
+    
+      
+    .{{ section.id }}-container-main h2{
+      font-family: "Poppins", sans-serif;
+      color:#164A5E; 
+      font-size:40px;
+      font-weight: 500;
+      margin: 0 0 2rem 0;
+    }
+    .{{ section.id }}-container-main h3{
+      font-family: "Poppins", sans-serif;
+      color:#164A5E; 
+      font-size:18px;
+      margin: 10px 0;
+      font-weight: 500;
+    }
+    .{{ section.id }}-container-main h4{
+      font-family: "Poppins", sans-serif;
+      color:#BD79C2; 
+      font-weight: 200;
+      font-size:17px;
+      margin: 4rem 0 1rem 0;
+    }
+    .{{ section.id }}-container-main p {
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 27px;
+        margin:5px 0;
+        color: #000;
+    }
+    .{{ section.id }}-flex-responsive p{
+        font-size: 16px;
+        line-height: 25px;
+      }
+    .{{ section.id }}-link-btn-cont p{
+        font-size : 14px;
+      }
+    .{{ section.id }}-image-wrap img{
+      width : 100%;
+      height : auto
+    }
+    .{{ section.id }}-link-btn{
+        color: #fff;
+        text-decoration: none;
+        background: #BD79C2;
+        padding: 1rem;
+        border-radius: 3rem;
+        font-size: 18px;
+        width: 270px;
+        display: block;
+        text-align: center;
+        margin: 2rem 0;
+      }
+    
+    
+    
+    /* RESPONSIVE SCREENS */
+    @media (max-width: 1130px) {
+      .{{ section.id }}-container-main{
+        margin: 5rem 0;
+    }
+      .{{ section.id }}-container-main h2{
+        font-size:35px;
+        line-height: 40px;
+      }
+      .{{ section.id }}-container-main h3{
+        font-size:14px;
+      }
+      .{{ section.id }}-container-main h4{
+        font-size:13px;
+      }
+      .{{ section.id }}-container-main p {
+          font-size: 14px;
+          line-height: 23px;
+      }
+      .{{ section.id }}-flex-responsive p{
+          font-size: 12px;
+          line-height: 18px;;
+        }
+      .{{ section.id }}-link-btn-cont p{
+          font-size : 11px;
+        }
+    }
+    
+    @media (max-width: 900px) {
+      .{{ section.id }}-image-wrap{
+        width :100%;
+        padding: 0;
+      }
+      .{{ section.id }}-info-wrap{
+        width :100%;
+        padding: 2rem 6rem;
+      }
+      .{{ section.id }}-container-main{
+          align-items: center;
+          flex-direction: column;
+      }
+      .{{ section.id }}-flex-responsive {
+        padding: 6rem 1rem 0 0;
+      
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .{{ section.id }}-info-wrap{
+        padding: 2rem;
+      }
+      .{{ section.id }}-link-btn{
+          padding: 0.5rem;
+          width: 100%;
+          margin:5rem 0 1rem;
+        }
+      .{{ section.id }}-link-btn-cont p{
+          text-align : center;
+        }
+    }
+    
+    
+      
+    /* SEND CUSTOM STYELS */
+    /* SEND CUSTOM STYELS */
+    {% endstyle %}
+    
+    
+    
+    
+    {% liquid
+      assign mainImageClasses = section.id | append: '-width ' | append: section.id | append: '-d-block'
+      assign iconClasses = section.id | append: '-icon ' | append: section.id | append: '-d-block' 
+    %}
+    
+    
+    
+    <section id='{{ section.id }}' class='{{ section.class}}'>
+      <div class='{{ section.id }}-container-main'>
+        <div class='{{ section.id }}-image-wrap'>
+          {% if section.settings.main_img != blank %}
+          {{ section.settings.main_img | image_url: width: 1500 | image_tag: class: mainImageClasses  }} 
+          {% endif %}
+        </div>
+    
+        <div class='{{ section.id }}-info-wrap'>
+          <div class='{{ section.id }}-header-group-section'>
+            <h4>{{ section.settings.subtitle }}</h4>
+            <h2 class='title-{{ section.id }}'>
+    
+                <!-- I was trying to split the inputted text into two sections.
+                the first section will contain all of the given text except the last two words
+                and the second one contains the last two words, then i'll select the second section then <span> the img to it,
+                and eventially merge both sections with each other, but i found that doing it with Javascript will be much easier, so i did it.
+                you will find the JS code below..
+                -->
+              <!-- 
+                {% assign words = section.settings.title | split: " " %}
+                {% if words.size > 1 %}
+                  {% assign second_to_last_index = words.size | minus: 2 %}
+                  {% assign second_to_last_word = words[second_to_last_index] %}
+                  {% assign last_word = words | last %}
+                  {% assign last_two_words = second_to_last_word | append: " " | append: last_word %}
+                {% elsif words.size == 1 %}
+                  {% assign last_two_words = words[0] %}
+                {% else %}
+                  {% assign last_two_words = '' %}
+                {% endif %}
+              {{ last_two_words }} 
+                -->
+    
+                <!-- 
+                    <span id='arc-line-{{ section.id }}'>  
+                      <img class='{{ section.id }}-d-block' src="https://cdn.shopify.com/s/files/1/0640/0144/1930/files/Vectordashline.png?v=1709318665" width='' height=''>
+                    </span>
+                 -->
+              </h2>
+            <p>{{ section.settings.textarea }}</p>
+          </div>
+          
+          <div class='{{ section.id }}-container-blocks'>
+          {% for block in section.blocks %}
+            <!-- {{ forloop.index }} -->
+            <div class='{{ section.id }}-flex-responsive'>
+              <div class="{{ block.id }}-img-cont">
+                {{ block.settings.image_icon | image_url: width: 500 | image_tag: class: iconClasses }}
+              </div>
+              <h3>{{ block.settings.block_header }}</h3>
+              <p>{{ block.settings.block_body }}</p>
+            </div>
+          {% endfor %}    
+          </div>
+    
+          <div class='{{ section.id }}-link-btn-cont'>
+            <a class='{{ section.id }}-link-btn' href='{{ section.settings.url_link }}'>{{ section.settings.url_text }}</a>
+            <p>{{ section.settings.hint }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    <script type="text/javascript">
+    
+    // initalize the inputted text
+    var inputted_text = "{{ section.settings.title }}";
+    var words = inputted_text.split(" ");
+    
+    // Check if the text has more than two words just to avoid any errors poping up
+    if (words.length > 2) {
+      
+      // slice all words except the last two
+      var allButLastTwo = words.slice(0, -2).join(" ");
+      
+      // slice the last two words
+      var lastTwoWords = words.slice(-2).join(" ");
+      
+      // merging both parts
+      var combinedText = allButLastTwo + " " + lastTwoWords;
+      
+    } else {
+      // If there is less than two words, the original text remains unchanged
+      var allButLastTwo = inputted_text;
+      var lastTwoWords = "";
+      var combinedText = inputted_text;
+    }
+    
+    // for testing
+    // console.log("all except the last two words : ", allButLastTwo);
+    // console.log("the last two words : ", lastTwoWords);
+    // console.log("merging text:", combinedText);
+      
+      // after initializing and defining both sections i'll merge them and span the "lastTwoWords" with the given image using template letirals then  push the changes into the document
+    document.querySelector('.title-{{ section.id }}').innerHTML= 
+        ` 
+          ${allButLastTwo} <span style='position: relative;white-space: nowrap;'>${lastTwoWords}                                                            
+            <span style='position: absolute;left: 0;bottom: -18px;'>  
+              <img style='display-block' src="https://cdn.shopify.com/s/files/1/0640/0144/1930/files/Vectordashline.png?v=1709318665">
+            </span> 
+            </span>
+          `
+    
+    </script>
+    
+    
+    {% schema %}
+      {
+        "name": "Custom (USP)",
+        "settings": [
+                     {
+                       "type": "image_picker",
+                       "id": "main_img",
+                       "label": "Enter the main image :"
+                      },
+                      {
+                        "type": "text",
+                        "id": "subtitle", 
+                        "label": "Enter subtitle text : ",
+                        "default" : "Sub Title"
+                      },
+                      {
+                        "type": "text",
+                        "id": "title", 
+                        "label": "Enter the title text : ",
+                        "default" : "Default section heading "
+                      },
+                      {
+                        "type": "checkbox",
+                        "id": "arc_line", 
+                        "label": "Show the Arc Line: ",
+                        "default" : false,
+                        "info" : "by checking this box a curved arc line will be added at the end of the text."
+                      },
+                      {
+                        "type": "textarea",
+                        "id": "textarea", 
+                        "label": "Enter introduction info here : ",
+                        "info": "Enter some introduction info about the section : ",
+                        "default" : "Deafult paragraph body section "
+                      },
+                      {
+                        "type": "text",
+                        "id": "url_text", 
+                        "label": "Enter the title text : ",
+                        "default" : "button text"
+                      },
+                      {
+                        "type": "url",
+                        "id": "url_link", 
+                        "label": "Please choose any link : "
+                      },
+                      {
+                        "type": "text",
+                        "id": "hint", 
+                        "label": "Enter the title text : ",
+                        "default" : "Default hint text "
+                      }
+                     ],
+                    "blocks" : [
+                                {
+                                  "name" : "pros block",
+                                  "type": "section-block",
+                                  "settings": [
+                                     {
+                                       "type": "image_picker",
+                                       "id": "image_icon",
+                                       "label": "Enter the image icon :"
+                                     },
+                                     {
+                                       "type": "text",
+                                       "id": "block_header",
+                                       "label": "Enter the header text:"
+                                     },
+                                     {
+                                       "type": "text",
+                                       "id": "block_body",
+                                       "label": "Enter the body text :"
+                                     }
+                                  ]
+                                }
+                              ],
+    
+          "presets": [
+            
+                  {
+                    "name": "Custom (USP)",
+                    "settings": {
+                      "subtitle": "Your default subtitle text",
+                      "title" : "default"
+                    }
+                  }
+                ]
+      }
+    {% endschema %}
+    
